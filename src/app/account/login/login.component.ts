@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
       grant_type: 'password' as string
     };
 
-    this.auth.login('a', 'P@$$w0rd').then(user => {
+    this.auth.login('a', 'P@$$w0rd', 'password').then(user => {
       console.log(user.json());
     }).catch(err => {
       console.log(err);

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Components
 import { AppComponent } from './app.component';
@@ -29,7 +28,7 @@ import { AuthService } from './services/index';
       { path: 'login', component: LoginComponent }
     ])
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, AuthService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

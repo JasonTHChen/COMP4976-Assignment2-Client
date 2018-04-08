@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch'; 
 
 import { IAuthentication } from '../models/user.model'
 
@@ -10,6 +12,8 @@ export class AuthService {
 
   private BASE_URL: string = 'http://localhost:61831';
   private headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  
+  redirectUrl: string;
 
   constructor(private http: Http) { }
 
@@ -40,7 +44,7 @@ export class AuthService {
     sessionStorage.setItem('expires_in', expiry.getTime().toString());
   }
 
-  login(username, password, grant_type): Promise<IAuthentication> {
+  login(username, password, grant_type): Observable<IAuthentication> {
     let url: string = this.BASE_URL + '/connect/token';
 
     var credential = {
@@ -61,19 +65,25 @@ export class AuthService {
     }
 
     return this.http.post(url, body, { headers: this.headers })
-      .toPromise()
-      .then(response => {
-        this.setToken(response.json() as IAuthentication);
-      })
-      .catch(this.handleError);
+      .map(res => {
+        this.setToken(res.json() as IAuthentication);
+      }).catch(this.handleError);
+
+    // return this.http.post(url, body, { headers: this.headers })
+    //   .toPromise()
+    //   .then(response => {
+    //     this.setToken(response.json() as IAuthentication);
+    //   })
+    //   .catch(this.handleError);
   }
 
   logout(): void {
     this.resetToken();
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error: Response): Observable<any> {
+    let errorMessage = error.json();
+    console.error(errorMessage);
+    return Observable.throw(errorMessage || 'Server error');
   }
 }

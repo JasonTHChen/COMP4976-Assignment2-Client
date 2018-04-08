@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/index';
 
@@ -11,21 +12,38 @@ import { AuthService } from '../../services/index';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  errorMessage: string;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    let sampleUser: any = {
-      username: 'a' as string,
-      password: 'P@$$w0rd' as string,
-      grant_type: 'password' as string
-    };
+    // let sampleUser: any = {
+    //   username: 'a' as string,
+    //   password: 'P@$$w0rd' as string,
+    //   grant_type: 'password' as string
+    // };
 
-    var result = this.auth.login('a', 'P@$$w0rd', 'password');
+    // var result = this.authService.login('a', 'P@$$w0rd', 'password');
   }
 
   login(loginForm: NgForm)
   {
-      
+      if (loginForm && loginForm.valid) {
+        let userName = loginForm.form.value.userName;
+        let password = loginForm.form.value.password;
+        
+        var result = this.authService.login(userName, password, 'password')
+          .subscribe(res => {
+            if (this.authService.redirectUrl) {
+              this.router.navigateByUrl(this.authService.redirectUrl);
+            } else {
+              this.router.navigate(['/']);
+            }
+          }, error => {
+            var results = error['_body'];
+            this.errorMessage = error
+          });
+      }
   }
 
 }

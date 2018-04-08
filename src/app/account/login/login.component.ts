@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import { AuthService } from '../../services/index';
 
 @Component({
@@ -17,11 +19,12 @@ export class LoginComponent implements OnInit {
       grant_type: 'password' as string
     };
 
-    this.auth.login('a', 'P@$$w0rd', 'password').then(user => {
-      console.log(user.json());
-    }).catch(err => {
-      console.log(err);
-    })
+    var result = this.auth.login('a', 'P@$$w0rd', 'password');
+  }
+
+  login(loginForm: NgForm)
+  {
+      
   }
 
 }

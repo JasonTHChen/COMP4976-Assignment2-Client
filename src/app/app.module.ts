@@ -2,15 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BoatsComponent } from './boats/boats.component';
 import { LoginComponent } from './account/login/login.component';
-
-// Services
-import { AuthService } from './services/index';
 
 @NgModule({
   declarations: [
@@ -21,6 +19,7 @@ import { AuthService } from './services/index';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
@@ -28,7 +27,7 @@ import { AuthService } from './services/index';
       { path: 'login', component: LoginComponent }
     ])
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

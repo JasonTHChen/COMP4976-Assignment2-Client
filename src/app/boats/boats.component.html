@@ -1,3 +1,24 @@
-<p>
-  boats works!
-</p>
+<div class="container">
+  <table *ngIf="boats" class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Picture</th>
+        <th>Length</th>
+        <th>Make</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of boats; let i=index;" (click)="onSelect(c)">
+        <td>{{ b.boatId }}</td>
+        <td>{{ b.boatName }}</td>
+        <td>{{ b.picture }}</td>
+        <td>{{ b.lengthInFeet }}</td>
+        <td>{{ b.make }}</td>
+        <td>{{ b.year }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

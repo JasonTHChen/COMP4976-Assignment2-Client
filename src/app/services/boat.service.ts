@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 import { Boat } from '../models/boat';
 
@@ -13,22 +15,23 @@ export class BoatService {
 
   constructor(private http: Http) { }
 
-  getBoats(): Promise<Boat[]> {
+  getBoats(): Observable<Boat[]> {
     let url: string = this.BASE_URL + '/api/boatsapi';
     let token = sessionStorage.getItem('access_token');
     
     let options = new RequestOptions({headers: new Headers({ 'Authorization': 'Bearer ' + token })});
-    return this.http.get(url, options)
-      .toPromise()
-      .then(res => {
-        res.json() as Boat[]
-        console.log(res.json());
-      })
-      .catch(this.handleError);
+
+    let data: Observable<Boat[]> = this.http.get(url, options)
+        .map(res => <Boat[]>res.json())
+        .do(data => console.log('getBoats:' + JSON.stringify(data)))
+        .catch(this.handleError);
+
+    return data;
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error: Response): Observable<any> {
+    let errorMessage = error.json();
+    console.error(errorMessage);
+    return Observable.throw(errorMessage.error || 'Server error');
   }
 }

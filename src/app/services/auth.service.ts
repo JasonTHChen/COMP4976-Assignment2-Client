@@ -19,11 +19,14 @@ export class AuthService {
   constructor(private http: Http) { }
 
   isAuthenticated(): boolean {
-    var accessToken = sessionStorage.getItem('accesss_token');
-    if (this.isTokenExpired || accessToken == null) {
+    var accessToken = sessionStorage.getItem('access_token');
+    if (this.isTokenExpired() || accessToken == null) {
+      //console.log("false")
       this.resetToken();
       return false;
     }
+
+    return true;
   }
 
   isTokenExpired(): boolean {
@@ -80,33 +83,6 @@ export class AuthService {
     let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
 
     return this.http.post(url, JSON.stringify(newUser), options)
-      .map(res => {
-        console.log(res.json());
-        return res.json();
-      }).catch(this.handleError);
-  }
-
-  testRegister() {
-    let url: string = this.BASE_URL + '/api/AccountAPI/Register';
-
-    var credentials = {
-      username: "test",
-      email: "test@tes.com",
-      password: "P@$$w0rd",
-      firstname: "test",
-      lastname: "test",
-      street: "test",
-      city: "test",
-      postalCode: "V5G 3H2",
-      province: "BC",
-      country: "Canada",
-      mobilenumber: "(604) 434-5734",
-      sailingExperience: 50
-    };
-
-    let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
-
-    return this.http.post(url, JSON.stringify(credentials), options)
       .map(res => {
         console.log(res.json());
         return res.json();

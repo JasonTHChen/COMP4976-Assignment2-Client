@@ -8,4 +8,5 @@ export interface IReservation {
     endDateTime: string;
     boatName: string;
     userName: string;
+    reservationId: number
 }

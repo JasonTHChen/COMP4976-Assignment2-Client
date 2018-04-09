@@ -35,6 +35,20 @@ export class ReservationService {
     return data;
   }
 
+  delete(id: number) {
+    console.log(id);
+    let url: string = this.BASE_URL + '/api/reservationapi/' + id;
+    let token = sessionStorage.getItem('access_token');
+    
+    let options = new RequestOptions({headers: new Headers({ 'Authorization': 'Bearer ' + token })});
+    this.http.delete(url, options)
+      .map(res => {
+        console.log(res.json());
+        return res.json();
+      }).catch(this.handleError)
+
+  }
+
   private handleError(error: Response): Observable<any> {
     let errorMessage = error.json();
     console.error(errorMessage);

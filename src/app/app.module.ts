@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BoatsComponent } from './boats/boats.component';
 import { LoginComponent } from './account/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BoatsComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { LoginComponent } from './account/login/login.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'boats', component: BoatsComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
     ])
   ],
   providers: [],

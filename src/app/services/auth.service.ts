@@ -3,9 +3,10 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch'; 
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
-import { IAuthentication } from '../models/user.model'
+import { IAuthentication, IUser } from '../models/user.model'
 
 @Injectable()
 export class AuthService {
@@ -68,13 +69,48 @@ export class AuthService {
       .map(res => {
         this.setToken(res.json() as IAuthentication);
       }).catch(this.handleError);
+  }
 
-    // return this.http.post(url, body, { headers: this.headers })
-    //   .toPromise()
-    //   .then(response => {
-    //     this.setToken(response.json() as IAuthentication);
-    //   })
-    //   .catch(this.handleError);
+  register(newUser: IUser) {
+    if (!newUser.userName || !newUser.password) {
+      return;
+    }
+    
+    let url: string = this.BASE_URL + '/api/AccountAPI/Register';
+    let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
+
+    return this.http.post(url, JSON.stringify(newUser), options)
+      .map(res => {
+        console.log(res.json());
+        return res.json();
+      }).catch(this.handleError);
+  }
+
+  testRegister() {
+    let url: string = this.BASE_URL + '/api/AccountAPI/Register';
+
+    var credentials = {
+      username: "test",
+      email: "test@tes.com",
+      password: "P@$$w0rd",
+      firstname: "test",
+      lastname: "test",
+      street: "test",
+      city: "test",
+      postalCode: "V5G 3H2",
+      province: "BC",
+      country: "Canada",
+      mobilenumber: "(604) 434-5734",
+      sailingExperience: 50
+    };
+
+    let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
+
+    return this.http.post(url, JSON.stringify(credentials), options)
+      .map(res => {
+        console.log(res.json());
+        return res.json();
+      }).catch(this.handleError);
   }
 
   logout(): void {

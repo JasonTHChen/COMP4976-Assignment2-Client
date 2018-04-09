@@ -17,13 +17,6 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // let sampleUser: any = {
-    //   username: 'a' as string,
-    //   password: 'P@$$w0rd' as string,
-    //   grant_type: 'password' as string
-    // };
-
-    // var result = this.authService.login('a', 'P@$$w0rd', 'password');
   }
 
   login(loginForm: NgForm)

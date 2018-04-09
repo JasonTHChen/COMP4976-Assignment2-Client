@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
           .subscribe(res => {
             if (this.authService.redirectUrl) {
               this.router.navigateByUrl(this.authService.redirectUrl);
+              
             } else {
               this.router.navigate(['/']);
             }

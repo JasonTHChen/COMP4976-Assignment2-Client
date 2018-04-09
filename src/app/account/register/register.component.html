@@ -1,0 +1,280 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h2>Register New User</h2>
+      <hr>
+    </div>
+  </div>
+  <form class="form-horizontal" role="form" method="POST" novalidate (ngSubmit)="register(signupForm)" #signupForm="ngForm"
+    autocomplete="off">
+    <fieldset>
+      <div class="row" [ngClass]="{'has-error': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="userName">Username</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="userName" #userNameVar="ngModel" type="text" name="userName" class="form-control" id="userName" placeholder="Username" required autofocus />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(userNameVar.touched || userNameVar.dirty) && userNameVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="userNameVar.errors.required">Username is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (emailVar.touched || emailVar.dirty) && !emailVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="email">Email</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="email" #emailVar="ngModel" type="email" name="email" class="form-control" id="email" placeholder="Email" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(emailVar.touched || emailVar.dirty) && emailVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="emailVar.errors.required">Email is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="password">Password</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="password" #passwordVar="ngModel" type="password" name="password" class="form-control" id="password" placeholder="Password" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(passwordVar.touched || passwordVar.dirty) && passwordVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="passwordVar.errors.required">Password is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (confirmPasswordVar.touched || confirmPasswordVar.dirty) && !confirmPasswordVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="confirmPassword">Confirm password</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm Password" required (ngModel)="confirmPassword" name="confirmPassword" #confirmPasswordVar="ngModel" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(confirmPasswordVar.touched || confirmPasswordVar.dirty) && confirmPasswordVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="confirmPasswordVar.errors.required">Confirm password is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="firstName">First Name</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="firstName" #firstNameVar="ngModel" type="text" name="firstName" class="form-control" id="firstName" placeholder="First Name" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(firstNameVar.touched || firstNameVar.dirty) && firstNameVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="firstNameVar.errors.required">First Name is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (lastNameVar.touched || lastNameVar.dirty) && !lastNameVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="lastName">Last Name</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="lastName" #lastNameVar="ngModel" type="text" name="lastName" class="form-control" id="lastName" placeholder="Last Name" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(lastNameVar.touched || lastNameVar.dirty) && lastNameVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="lastNameVar.errors.required">Last Name is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (streetVar.touched || streetVar.dirty) && !streetVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="street">Street</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="street" #streetVar="ngModel" type="text" name="street" class="form-control" id="street" placeholder="Street" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(streetVar.touched || streetVar.dirty) && streetVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="streetVar.errors.required">Street is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (cityVar.touched || cityVar.dirty) && !cityVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="city">City</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="city" #cityVar="ngModel" type="text" name="city" class="form-control" id="city" placeholder="City" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(cityVar.touched || cityVar.dirty) && cityVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="cityVar.errors.required">City is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (provinceVar.touched || provinceVar.dirty) && !provinceVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="province">Province</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="province" #provinceVar="ngModel" type="text" name="province" class="form-control" id="province" placeholder="Province" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(provinceVar.touched || provinceVar.dirty) && provinceVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="provinceVar.errors.required">Province is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (postalCodeVar.touched || postalCodeVar.dirty) && !postalCodeVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="postalCode">Postal Code</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="postalCode" #postalCodeVar="ngModel" type="text" name="postalCode" class="form-control" id="postalCode" placeholder="Postal Code" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(postalCodeVar.touched || postalCodeVar.dirty) && postalCodeVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="postalCodeVar.errors.required">Postal code is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (countryVar.touched || countryVar.dirty) && !countryVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="country">Country</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="country" #countryVar="ngModel" type="text" name="country" class="form-control" id="country" placeholder="Country" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(countryVar.touched || countryVar.dirty) && countryVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="countryVar.errors.required">Country is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (mobileNumberVar.touched || mobileNumberVar.dirty) && !mobileNumberVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="mobileNumber">Mobile Number</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="mobileNumber" #mobileNumberVar="ngModel" type="text" name="mobileNumber" class="form-control" id="mobileNumber" placeholder="(xxx) xxx-xxxx" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(mobileNumberVar.touched || mobileNumberVar.dirty) && mobileNumberVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="mobileNumberVar.errors.required">Mobile number is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row" [ngClass]="{'has-error': (sailingExperienceVar.touched || sailingExperienceVar.dirty) && !sailingExperienceVar.valid }">
+        <div class="col-md-3 field-label-responsive">
+          <label for="sailingExperience">Sailing Experience</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <input (ngModel)="sailingExperience" #sailingExperienceVar="ngModel" type="number" name="sailingExperience" class="form-control" id="sailingExperience" placeholder="eg: 2" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle" *ngIf="(sailingExperienceVar.touched || sailingExperienceVar.dirty) && sailingExperienceVar.errors">
+              <!-- Put name validation error messages here -->
+              <span *ngIf="sailingExperienceVar.errors.required">Sailing experience is required.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-success" [disabled]="!signupForm.valid">Register</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

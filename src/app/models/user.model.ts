@@ -2,6 +2,7 @@ export interface IUser {
     userName: string;
     email: string;
     password: string;
+    confirmPassword: string;
     firstName: string;
     lastName: string;
     street: string;
@@ -10,7 +11,7 @@ export interface IUser {
     postalCode: string;
     country: string;
     mobileNumber: string;
-    SailingExperience: string;
+    sailingExperience: string;
 }
 
 export class IAuthentication {

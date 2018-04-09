@@ -1,19 +1,26 @@
+
 <div class="container">
+  <h2>Reservations</h2>
+  <hr>
   <table *ngIf="reservations" class="table">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Boat Name</th>
         <th>From</th>
         <th>To</th>
         <th>User</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let r of reservations; let i=index;" (click)="onSelect(c)">
+      <tr *ngFor="let r of reservations; let i=index;">
+        <td>{{ r.reservationId }}</td>
         <td>{{ r.boatName }}</td>
         <td>{{ r.startDateTime }}</td>
         <td>{{ r.endDateTime }}</td>
         <td>{{ r.userName }}</td>
+        <td><button class="btn btn-link" (click)="deleteReservation(r)">Delete</button></td>
       </tr>
     </tbody>
   </table>

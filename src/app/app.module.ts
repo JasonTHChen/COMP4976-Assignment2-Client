@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { BoatsComponent } from './boats/boats.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RegisterComponent } from './account/register/register.component';
     HomeComponent,
     BoatsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { RegisterComponent } from './account/register/register.component';
       { path: '', component: HomeComponent },
       { path: 'boats', component: BoatsComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'reservations', component: ReservationsComponent }
     ])
   ],
   providers: [],

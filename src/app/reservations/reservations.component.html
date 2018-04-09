@@ -1,0 +1,20 @@
+<div class="container">
+  <table *ngIf="reservations" class="table">
+    <thead>
+      <tr>
+        <th>Boat Name</th>
+        <th>From</th>
+        <th>To</th>
+        <th>User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of reservations; let i=index;" (click)="onSelect(c)">
+        <td>{{ r.boatName }}</td>
+        <td>{{ r.startDateTime }}</td>
+        <td>{{ r.endDateTime }}</td>
+        <td>{{ r.userName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
